@@ -61,6 +61,12 @@
         android:icon="@drawable/ic_settings_lock_screen"
         android:fragment="com.android.settings.purity.LockscreenInterface" />
 
+    <PreferenceScreen
+        android:id="@+id/wakelock_blocker"
+        android:layout="@layout/preference_wakelockblocker"
+        android:title="@string/wakelock_blocker"
+        android:fragment="com.android.settings.purity.WakeLockBlocker" />
+
     <PreferenceCategory
             android:key="category_recent_panel"
             android:title="@string/category_recent_panel_title"/>
