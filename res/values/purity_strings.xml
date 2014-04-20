@@ -275,8 +275,10 @@
     <string name="lockscreen_quick_unlock_control_title">Quick unlock</string>
     <string name="lockscreen_quick_unlock_control_summary">Unlock automatically when the correct PIN/password is entered</string>
 
-     <!--AppOps-->
-     <string name="appops_settings_title">App privacy</string>
+    <!-- AppOps additions -->
+    <string name="appops_settings">App privacy</string>
+    <string name="appops_sysapp_beware">Beware!</string>
+    <string name="appops_sysapp_warning">"Changing permissions of core Android components might lead to undesired behavior. Change settings here at your own risk!</string>
 
     <!-- Lights settings screen, notification light settings -->
     <string name="display_lights_settings_title">Display &amp; lights</string>
