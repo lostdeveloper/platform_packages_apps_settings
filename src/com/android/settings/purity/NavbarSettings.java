@@ -16,20 +16,14 @@
 
 package com.android.settings.purity;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.SeekBarPreference;
 import android.provider.Settings;
-
-import com.android.internal.util.cm.DeviceUtils;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
@@ -40,12 +34,12 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "NavBar";
-    private static final String PREF_STYLE_DIMEN = "navbar_style_dimen_settings";
     private static final String KEY_NAVIGATION_BAR_LEFT = "navigation_bar_left";
+    private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
     private static final String NAVIGATION_BUTTON_GLOW_TIME = "navigation_button_glow_time";
 
-    PreferenceScreen mStyleDimenPreference;
     private CheckBoxPreference mNavigationBarLeftPref;
+    private ListPreference mNavigationBarHeight;
     private SeekBarPreference mNavigationButtonGlowTime;
 
     @Override
@@ -55,12 +49,19 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
 
         PreferenceScreen prefs = getPreferenceScreen();
 
+        mNavigationBarHeight = (ListPreference) findPreference(KEY_NAVIGATION_BAR_HEIGHT);
+        mNavigationBarHeight.setOnPreferenceChangeListener(this);
+        int statusNavigationBarHeight = Settings.System.getInt(getActivity().getApplicationContext()
+                .getContentResolver(),
+                Settings.System.NAVIGATION_BAR_HEIGHT, 48);
+        mNavigationBarHeight.setValue(String.valueOf(statusNavigationBarHeight));
+        mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());
+
         mNavigationButtonGlowTime = (SeekBarPreference) findPreference(NAVIGATION_BUTTON_GLOW_TIME);
         mNavigationButtonGlowTime.setProgress(Settings.System.getInt(getContentResolver(),
                   Settings.System.NAVIGATION_BUTTON_GLOW_TIME, 500));
         mNavigationButtonGlowTime.setOnPreferenceChangeListener(this);
 
-        mStyleDimenPreference = (PreferenceScreen) findPreference(PREF_STYLE_DIMEN);
         mNavigationBarLeftPref = (CheckBoxPreference) findPreference(KEY_NAVIGATION_BAR_LEFT);
         if (!Utils.isPhone(getActivity())) {
             getPreferenceScreen().removePreference(mNavigationBarLeftPref);
@@ -68,24 +69,18 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         }
     }
 
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-        if (preference == mNavigationButtonGlowTime) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.NAVIGATION_BUTTON_GLOW_TIME, (Integer)value);
-            return true;
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mNavigationBarHeight) {
+            int statusNavigationBarHeight = Integer.valueOf((String) objValue);
+            int index = mNavigationBarHeight.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_HEIGHT, statusNavigationBarHeight);
+            mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntries()[index]);
+        } else if (preference == mNavigationButtonGlowTime) {
+            int value = (Integer) objValue;
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.NAVIGATION_BUTTON_GLOW_TIME, value);
         }
-
-         return false;
+        return true;
     }
-
-    private void updateNavbarPreferences(boolean show) {
-        mStyleDimenPreference.setEnabled(show);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
 }

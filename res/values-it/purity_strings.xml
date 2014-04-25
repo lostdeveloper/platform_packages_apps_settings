@@ -82,8 +82,7 @@
     <string name="lockscreen_maximize_widgets_title">Massimizza widget</string>
     <string name="lockscreen_maximize_widgets_summary">Mostra i widget massimizzati e lo sblocco minimizzato quando lo schermo viene acceso</string>
     <string name="navbar_settings_title">Barra di navigazione</string>
-    <string name="navbar_style_dimen_title">Altezza</string>
-    <string name="navigation_bar_height">Selezione dpi</string>
+    <string name="navigation_bar_height">Altezza</string>
     <string name="navigation_bar_height_0">0dp (nascosta)</string>
     <string name="navigation_bar_title">Pulsanti e disposizione</string>
     <string name="navigation_bar_help_text">1 - Per cominciare le modifiche, tocca il lucchetto\n\n2 - Tocca qualunque pulsante per assegnare o cambiare funzione\n\n3 - Tocca e tieni premuto per modificare l\'ordine\n\n4 - Per salvare, tocca nuovamente il lucchetto\n\n5 - Per ripristinare, tocca il pulsante di reset\n\n</string>

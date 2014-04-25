@@ -125,8 +125,7 @@
 
     <!-- Navigation Bar Height -->
     <string name="navbar_settings_title">Navigationsleiste</string>
-    <string name="navbar_style_dimen_title">Größe</string>
-    <string name="navigation_bar_height">DPI-Auswahl</string>
+    <string name="navigation_bar_height">Größe</string>
     <string name="navigation_bar_height_54">54dp</string>
     <string name="navigation_bar_height_52">52dp</string>
     <string name="navigation_bar_height_50">50dp</string>

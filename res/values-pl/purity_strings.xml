@@ -130,8 +130,7 @@
 
     <!-- Navigation Bar Height -->
     <string name="navbar_settings_title">Belka nawigacyjna</string>
-    <string name="navbar_style_dimen_title">Wymiary</string>
-    <string name="navigation_bar_height">Wybór dpi</string>
+    <string name="navigation_bar_height">Wymiary</string>
     <string name="navigation_bar_height_54">54dp</string>
     <string name="navigation_bar_height_52">52dp</string>
     <string name="navigation_bar_height_50">50dp</string>
